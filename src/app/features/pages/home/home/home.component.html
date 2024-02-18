@@ -1,0 +1,8 @@
+
+<div class="title">List User</div>
+<div class="logo">Jifiti</div>
+<app-list-users *ngIf="listUser != [] && listUser.length > 0" [listUser]="listUser" (refresh)="refreshList()"></app-list-users>
+<div class="add-button">
+  <button mat-raised-button color="primary" (click)="openDialog('3000ms', '1500ms')">Add New User</button>
+</div>
+

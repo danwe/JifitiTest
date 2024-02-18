@@ -1,0 +1,26 @@
+
+<div *ngIf="data == null" class="new-user">Create New User</div>
+<div *ngIf="data != null" class="new-user">Edit  User</div>
+<div class="form">
+  <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let control of listFormType">
+      <mat-form-field appearance="fill">
+
+        <label>{{control.label}}*</label>
+        <input matInput  [type]="control.type" [formControlName]="control.key">
+        <mat-error *ngIf="dynamicForm.controls[control.key].hasError('required')">
+        <strong>{{control.name }} is required</strong>
+        </mat-error>
+        <mat-error *ngIf="dynamicForm.controls[control.key].hasError('invalidPhoneNumber')">
+          <strong>{{control.name }} number no legal</strong>
+        </mat-error>
+        <mat-error *ngIf="dynamicForm.controls[control.key].hasError('email')">
+          <strong>{{control.name }} email no legal</strong>
+        </mat-error>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!dynamicForm.valid">Submit</button>
+
+  </form>
+</div>
+
